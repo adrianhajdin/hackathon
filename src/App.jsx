@@ -83,7 +83,7 @@ const App = () => {
             places={placesWithinBounds.length ? placesWithinBounds : places}
           />
         </Grid>
-      </Grid>
+      </Grid>*/}
     </>
   );
 };
