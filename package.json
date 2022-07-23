@@ -18,7 +18,9 @@
     "google-map-react": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "supercluster": "^7.1.5",
+    "use-supercluster": "^0.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

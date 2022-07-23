@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Grid, Typography } from '@mui/material';
 
 import Header from './components/Header/Header';
@@ -7,48 +7,77 @@ import Map from './components/Map/Map';
 import NewTicket from './components/NewTicket/NewTicket';
 
 import containers from './data/kontejner.json'
+import useSupercluster from 'use-supercluster'
 
 const App = () => {
   const [type, setType] = useState('restaurants');
-
+  const [zoom, setZoom] = useState(17)
+const [data, setData] = useState([])
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
+  const [newBounds, setNewBounds] = useState(null);
 
   const [placesWithinBounds, setPlacesWithinBounds] = useState([])
-  const [places, setPlaces] = useState([]);
 
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-      setCoords({ lat: latitude, lng: longitude });
-    });
+  
+  useEffect(() => {  
+   setIsLoading(true)
+    const filteredData =  containers.result.records
+    .filter((c) => 
+      Number(c.Y.replace(',', '.')) < newBounds?.ne?.lat && 
+      Number(c.X.replace(',', '.')) < newBounds?.ne?.lng &&
+      Number(c.Y.replace(',', '.')) > newBounds?.sw?.lat && 
+      Number(c.X.replace(',', '.')) > newBounds?.sw?.lng)
+    .slice(0, 7000)
+      .map((place) => ({
+        id: place._id,
+        vrstaPosude: place['VRSTA OTPADA'],
+        volumen: place.VOLUMEN,
+        lokacija: place.LOKACIJA,
+        type: "Kontejner",
+        properties: { 
+          cluster: false, 
+          category: 'kontejner', 
+          id: place._id 
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [
+            Number(place?.X?.replace(',', '.')),
+            Number(place?.Y?.replace(',', '.'))
+          ]
+        }
+      })
+    );
+ 
+    setData(filteredData)
 
-    // setPlaces(containers.result.records.slice(0, 200));
     setIsLoading(false);
-    
-    // setPlaces(containers.result.records.slice(0, 10));
+      // setTimeout(() => {
+        
+      //   setIsLoading(false)
+      // }, 2000);
 
-  }, [containers]);
+  }, [newBounds]);
 
-  useEffect(() => {
-    if (bounds) {      
-      setIsLoading(true);
-      const filtered = containers.result.records.filter((container) => 
-        Number(container.Y.replace(',', '.')) < bounds.ne.lat && 
-        Number(container.X.replace(',', '.')) < bounds.ne.lng &&
-        Number(container.Y.replace(',', '.')) > bounds.sw.lat && 
-        Number(container.X.replace(',', '.')) > bounds.sw.lng
-      ).slice(0, 100);
+  
+  const { clusters, supercluster } = useSupercluster({
+    points: data,
+    bounds,
+    zoom,
+    options: { radius: 75, maxZoom: 20 }
+  });
 
-      setPlacesWithinBounds(filtered);
-
-      setIsLoading(false);
-    }
-  }, [bounds, type]);
-
+  
+  // useEffect(() => {
+  //   console.log(clusters);
+  //   console.log(supercluster);
+  // }, [clusters, supercluster]);
+  
   const onLoad = (autoC) => setAutocomplete(autoC);
 
   const onPlaceChanged = () => {
@@ -65,7 +94,7 @@ const App = () => {
         <Grid item xs={12} md={4}>
           <List
             childClicked={childClicked}
-            places={placesWithinBounds.length ? placesWithinBounds : places}
+            places={clusters}
             type={type}
             setType={setType}
           />
@@ -77,7 +106,12 @@ const App = () => {
             setCoords={setCoords}
             coords={coords}
             isLoading={isLoading}
-            places={placesWithinBounds.length ? placesWithinBounds : places}
+            places={data}
+            supercluster={supercluster}
+            clusters={clusters}
+            setNewBounds={setNewBounds}
+            setZoom={setZoom}
+            setIsLoading={setIsLoading}
           />
         </Grid>
       </Grid>
