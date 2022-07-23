@@ -9,6 +9,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Container,
 } from "@mui/material";
 import ProgressBar from "@ramonak/react-progress-bar";
 
@@ -77,7 +78,8 @@ const TicketManagement = () => {
   console.log(data);
 
   return (
-    <div>
+    <Container maxWidth='md' sx={{marginTop: 15 }}>
+
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Container status
@@ -106,7 +108,7 @@ const TicketManagement = () => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">{container.address}</TableCell>
-                  <TableCell align="left"><ProgressBar bgColor={progressColor(container.fillPercentage)} completed={container.fillPercentage} />;</TableCell>
+                  <TableCell align="left"><ProgressBar bgColor={progressColor(container.fillPercentage)} completed={container.fillPercentage} /></TableCell>
                   <TableCell align="left">{container.typeOfContainer}</TableCell>
                   <TableCell align="right">{container.volume}</TableCell>
                 </TableRow>
@@ -115,7 +117,7 @@ const TicketManagement = () => {
           </Table>
         </TableContainer>
       </Paper>
-    </div>
+    </Container>
   );
 };
 

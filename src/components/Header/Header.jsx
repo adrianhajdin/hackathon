@@ -10,7 +10,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from "@mui/icons-material/Search";
 
-const Header = ({ onLoad, onPlaceChanged }) => {
+const Header = ({ onLoad, onPlaceChanged}) => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "#161B22" }}>
       <Toolbar
