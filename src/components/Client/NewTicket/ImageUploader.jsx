@@ -9,7 +9,7 @@ const ImageUploader = ({file, setFile}) => {
   return (
     <div>
       <Typography variant="h6" sx={{ marginBottom: 3 }}>
-        Učitaj sliku
+        Upload photo
       </Typography>
 
       <FileUploader
@@ -19,7 +19,7 @@ const ImageUploader = ({file, setFile}) => {
         types={fileTypes}
         classes="droparea"
       />
-      <p>{file ? file[0].name : "Ni jedna slika nije učitana."}</p>
+      <p>{file ? file[0].name : ""}</p>
     </div>
   );
 };

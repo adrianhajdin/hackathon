@@ -6,6 +6,7 @@ import List from './components/List/List';
 import Map from './components/Map/Map';
 import TicketStatus from './components/Client/TicketStatus/TicketStatus';
 import TicketManagement from './components/Admin/ContainerManagement';
+import Alerts from './components/Admin/Alerts'
 
 const App = () => {
   const [type, setType] = useState('restaurants');
@@ -56,7 +57,7 @@ const App = () => {
     <>
       <CssBaseline />
       <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
-      <TicketManagement />
+      <Alerts />
       {/* <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
