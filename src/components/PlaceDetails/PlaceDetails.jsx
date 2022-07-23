@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@mui/material';
+import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 // import Rating from '@material-ui/lab/Rating';
@@ -9,29 +9,23 @@ const PlaceDetails = ({ place, selected, refProp }) => {
 
   return (
     <Card elevation={6}>
-      {/* <CardMedia
-        style={{ height: 350 }}
-        image={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
-        title={place.name}
-      />
       <CardContent>
         <Typography gutterBottom variant="h5">{place.name}</Typography>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">{place.num_reviews} review{place.num_reviews > 1 && 's'}</Typography>
+          <Typography component="legend">Lokacija</Typography>
+          <Typography gutterBottom variant="subtitle1">{place.LOKACIJA}</Typography>
         </Box>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">Price</Typography>
-          <Typography gutterBottom variant="subtitle1">
-            test
-          </Typography>
+          <Typography component="legend">Vrsta Posude</Typography>
+          <Typography gutterBottom variant="subtitle1">{place.VRSTA_POSUDE}</Typography>
         </Box>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">Ranking</Typography>
+          <Typography component="legend">Volumen</Typography>
           <Typography gutterBottom variant="subtitle1">
-            test
+            {place.VOLUMEN}
           </Typography>
         </Box>
-      </CardContent> */}
+      </CardContent>
       {/* <CardActions>
         <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blank')}>
           Trip Advisor

@@ -6,25 +6,31 @@ import List from './components/List/List';
 import Map from './components/Map/Map';
 import NewTicket from './components/NewTicket/NewTicket';
 
+import containers from './data/kontenjeri.json'
+
 const App = () => {
   const [type, setType] = useState('restaurants');
 
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
 
-  const [weatherData, setWeatherData] = useState([]);
-  const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
 
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
       setCoords({ lat: latitude, lng: longitude });
     });
-  }, []);
+
+    setPlaces(containers.result.records.slice(0, 200));
+    setIsLoading(false);
+    
+    // setPlaces(containers.result.records.slice(0, 10));
+
+  }, [containers]);
 
   useEffect(() => {
     if (bounds) {
@@ -47,9 +53,8 @@ const App = () => {
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
-            isLoading={false} // todo
             childClicked={childClicked}
-            places={filteredPlaces.length ? filteredPlaces : places}
+            places={places}
             type={type}
             setType={setType}
           />
@@ -60,8 +65,7 @@ const App = () => {
             setBounds={setBounds}
             setCoords={setCoords}
             coords={coords}
-            places={filteredPlaces.length ? filteredPlaces : places}
-            weatherData={weatherData}
+            places={places}
           />
         </Grid>
       </Grid>
