@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, CssBaseline } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import Header from './components/Header/Header';
 import List from './components/List/List';
@@ -29,16 +29,6 @@ const App = () => {
   useEffect(() => {
     if (bounds) {
       setIsLoading(true);
-
-      // getWeatherData(coords.lat, coords.lng)
-      //   .then((data) => setWeatherData(data));
-
-      // getPlacesData(type, bounds.sw, bounds.ne)
-      //   .then((data) => {
-      //     setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
-      //     setFilteredPlaces([]);
-      //     setIsLoading(false);
-      //   });
     }
   }, [bounds, type]);
 
@@ -53,10 +43,8 @@ const App = () => {
 
   return (
     <>
-      <CssBaseline />
       <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
-      <NewTicket />
-      {/* <Grid container spacing={3} style={{ width: '100%' }}>
+      <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
             isLoading={false} // todo
@@ -76,7 +64,7 @@ const App = () => {
             weatherData={weatherData}
           />
         </Grid>
-      </Grid> */}
+      </Grid>
     </>
   );
 };

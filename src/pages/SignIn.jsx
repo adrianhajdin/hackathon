@@ -10,7 +10,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 function Copyright(props) {
@@ -26,7 +25,6 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
 
 export default function SignInSide() {
   const handleSubmit = (event) => {
@@ -39,7 +37,7 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -48,7 +46,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://media.timeout.com/images/105552214/image.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -117,6 +115,6 @@ export default function SignInSide() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </>
   );
 }
