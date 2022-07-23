@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, CssBaseline } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import Header from './components/Header/Header';
 import List from './components/List/List';
@@ -8,39 +8,46 @@ import TicketStatus from './components/Client/TicketStatus/TicketStatus';
 import TicketManagement from './components/Admin/ContainerManagement';
 import Alerts from './components/Admin/Alerts'
 
+import containers from './data/kontejner.json'
+
 const App = () => {
   const [type, setType] = useState('restaurants');
 
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
 
-  const [weatherData, setWeatherData] = useState([]);
-  const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [placesWithinBounds, setPlacesWithinBounds] = useState([])
   const [places, setPlaces] = useState([]);
 
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
       setCoords({ lat: latitude, lng: longitude });
     });
-  }, []);
+
+    // setPlaces(containers.result.records.slice(0, 200));
+    setIsLoading(false);
+    
+    // setPlaces(containers.result.records.slice(0, 10));
+
+  }, [containers]);
 
   useEffect(() => {
-    if (bounds) {
+    if (bounds) {      
       setIsLoading(true);
+      const filtered = containers.result.records.filter((container) => 
+        Number(container.Y.replace(',', '.')) < bounds.ne.lat && 
+        Number(container.X.replace(',', '.')) < bounds.ne.lng &&
+        Number(container.Y.replace(',', '.')) > bounds.sw.lat && 
+        Number(container.X.replace(',', '.')) > bounds.sw.lng
+      ).slice(0, 100);
 
-      // getWeatherData(coords.lat, coords.lng)
-      //   .then((data) => setWeatherData(data));
+      setPlacesWithinBounds(filtered);
 
-      // getPlacesData(type, bounds.sw, bounds.ne)
-      //   .then((data) => {
-      //     setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
-      //     setFilteredPlaces([]);
-      //     setIsLoading(false);
-      //   });
+      setIsLoading(false);
     }
   }, [bounds, type]);
 
@@ -55,15 +62,14 @@ const App = () => {
 
   return (
     <>
-      <CssBaseline />
       <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
       <Alerts />
       {/* <Grid container spacing={3} style={{ width: '100%' }}>
+      <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
-            isLoading={false} // todo
             childClicked={childClicked}
-            places={filteredPlaces.length ? filteredPlaces : places}
+            places={placesWithinBounds.length ? placesWithinBounds : places}
             type={type}
             setType={setType}
           />
@@ -74,11 +80,11 @@ const App = () => {
             setBounds={setBounds}
             setCoords={setCoords}
             coords={coords}
-            places={filteredPlaces.length ? filteredPlaces : places}
-            weatherData={weatherData}
+            isLoading={isLoading}
+            places={placesWithinBounds.length ? placesWithinBounds : places}
           />
         </Grid>
-      </Grid> */}
+      </Grid>*/}
     </>
   );
 };
