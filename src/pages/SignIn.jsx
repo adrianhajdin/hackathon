@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
+import axios from 'axios';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -27,13 +28,17 @@ function Copyright(props) {
 
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    setEmail(data.get('email'));
+    setPassword(data.get('password'));
+    console.log(email, password);
+    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/login`, { email, password })
+    console.log(response)
   };
 
   return (
