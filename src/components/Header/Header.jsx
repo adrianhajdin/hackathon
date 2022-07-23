@@ -5,8 +5,8 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Header = ({ onLoad, onPlaceChanged }) => {
   return (
-    <AppBar position="static">
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between',}}>
+    <AppBar position="static" sx={{backgroundColor: '#161B22'}}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', color: 'white'}}>
         <Typography variant="h5" sx={{ display: { sm: 'none', md: 'block' }, }}>
           Eco Rijeka
         </Typography>
