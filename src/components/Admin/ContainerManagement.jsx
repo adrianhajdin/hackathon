@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import ProgressBar from "@ramonak/react-progress-bar";
 
+
 const TicketManagement = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +40,12 @@ const TicketManagement = () => {
           Container status
         </Typography>
 
+    {/*     <SearchBar
+          value={searched}
+          onChange={(searchVal) => requestSearch(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        />
+ */}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
