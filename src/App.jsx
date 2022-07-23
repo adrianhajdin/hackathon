@@ -6,7 +6,7 @@ import List from './components/List/List';
 import Map from './components/Map/Map';
 import NewTicket from './components/NewTicket/NewTicket';
 
-import containers from './data/kontenjeri.json'
+import containers from './data/kontejner.json'
 
 const App = () => {
   const [type, setType] = useState('restaurants');
@@ -14,6 +14,7 @@ const App = () => {
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
 
+  const [placesWithinBounds, setPlacesWithinBounds] = useState([])
   const [places, setPlaces] = useState([]);
 
   const [autocomplete, setAutocomplete] = useState(null);
@@ -25,7 +26,7 @@ const App = () => {
       setCoords({ lat: latitude, lng: longitude });
     });
 
-    setPlaces(containers.result.records.slice(0, 200));
+    // setPlaces(containers.result.records.slice(0, 200));
     setIsLoading(false);
     
     // setPlaces(containers.result.records.slice(0, 10));
@@ -33,8 +34,18 @@ const App = () => {
   }, [containers]);
 
   useEffect(() => {
-    if (bounds) {
+    if (bounds) {      
       setIsLoading(true);
+      const filtered = containers.result.records.filter((container) => 
+        Number(container.Y.replace(',', '.')) < bounds.ne.lat && 
+        Number(container.X.replace(',', '.')) < bounds.ne.lng &&
+        Number(container.Y.replace(',', '.')) > bounds.sw.lat && 
+        Number(container.X.replace(',', '.')) > bounds.sw.lng
+      ).slice(0, 100);
+
+      setPlacesWithinBounds(filtered);
+
+      setIsLoading(false);
     }
   }, [bounds, type]);
 
@@ -54,7 +65,7 @@ const App = () => {
         <Grid item xs={12} md={4}>
           <List
             childClicked={childClicked}
-            places={places}
+            places={placesWithinBounds.length ? placesWithinBounds : places}
             type={type}
             setType={setType}
           />
@@ -65,7 +76,8 @@ const App = () => {
             setBounds={setBounds}
             setCoords={setCoords}
             coords={coords}
-            places={places}
+            isLoading={isLoading}
+            places={placesWithinBounds.length ? placesWithinBounds : places}
           />
         </Grid>
       </Grid>

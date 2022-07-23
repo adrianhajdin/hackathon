@@ -8,8 +8,6 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
 
   const [age, setAge] = React.useState('');
 
-  console.log(isLoading, 'inside of places')
-
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -27,7 +25,6 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
         </div>
       ) : (
         <>
-        {console.log('places in list', places)}
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id="containers">Containers</InputLabel>
           <Select

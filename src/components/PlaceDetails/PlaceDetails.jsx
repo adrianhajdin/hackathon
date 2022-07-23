@@ -16,7 +16,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           <Typography gutterBottom variant="subtitle1">{place.LOKACIJA}</Typography>
         </Box>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">Vrsta Posude</Typography>
+          <Typography component="legend">Vrsta</Typography>
           <Typography gutterBottom variant="subtitle1">{place.VRSTA_POSUDE}</Typography>
         </Box>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
