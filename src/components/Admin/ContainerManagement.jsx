@@ -9,8 +9,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Container,
 } from "@mui/material";
 import ProgressBar from "@ramonak/react-progress-bar";
+
 
 const TicketManagement = () => {
   /*   const [data, setData] = useState([]);
@@ -44,22 +46,51 @@ const TicketManagement = () => {
         y: "14.4422",
         volume: "1000",
         typeOfContainer: "metal",
-        fillPercentage: "45",
+        fillPercentage: "95",
         address: "Avelina Turka 2a",
         id: "d4362cf1edb745ad81ec8b5cfca52205",
       },
     ],
   };
 
+ /*  const [rows, setRows] = useState(data.containers);
+  const [searched, setSearched] = useState("");
+
+  const requestSearch = (searchedVal) => {
+    const filteredRows = data.containers.filter((row) => {
+      return row.name.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setRows(filteredRows);
+  };
+
+  const cancelSearch = () => {
+    setSearched("");
+    requestSearch(searched);
+  };
+ */
+
+  const progressColor = (percentage) => {
+    let hex = "";
+    percentage < 90 ? hex = "#2BAF66" : hex = "#FB4F52";
+    return hex;
+  }
+
   console.log(data);
 
   return (
-    <div>
+    <Container maxWidth='md' sx={{marginTop: 15 }}>
+
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Container status
         </Typography>
 
+    {/*     <SearchBar
+          value={searched}
+          onChange={(searchVal) => requestSearch(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        />
+ */}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -77,7 +108,7 @@ const TicketManagement = () => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">{container.address}</TableCell>
-                  <TableCell align="left"><ProgressBar bgColor="#2BAF66" completed={container.fillPercentage} />;</TableCell>
+                  <TableCell align="left"><ProgressBar bgColor={progressColor(container.fillPercentage)} completed={container.fillPercentage} /></TableCell>
                   <TableCell align="left">{container.typeOfContainer}</TableCell>
                   <TableCell align="right">{container.volume}</TableCell>
                 </TableRow>
@@ -86,7 +117,7 @@ const TicketManagement = () => {
           </Table>
         </TableContainer>
       </Paper>
-    </div>
+    </Container>
   );
 };
 

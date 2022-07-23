@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 
-import Header from './components/Header/Header';
-import List from './components/List/List';
-import Map from './components/Map/Map';
-import TicketStatus from './components/Client/TicketStatus/TicketStatus';
-import TicketManagement from './components/Admin/ContainerManagement';
+import Header from "./components/Header/Header";
+import List from "./components/List/List";
+import Map from "./components/Map/Map";
+import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
+import TicketManagement from "./components/Admin/ContainerManagement";
+import Alerts from "./components/Admin/Alerts";
 
 import containers from './data/kontejner.json'
 import useSupercluster from 'use-supercluster'
@@ -13,12 +14,13 @@ import useSupercluster from 'use-supercluster'
 const App = () => {
   const [type, setType] = useState('restaurants');
   const [zoom, setZoom] = useState(17)
-const [data, setData] = useState([])
+  const [data, setData] = useState([])
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
   const [newBounds, setNewBounds] = useState(null);
 
-  const [placesWithinBounds, setPlacesWithinBounds] = useState([])
+  const [placesWithinBounds, setPlacesWithinBounds] = useState([]);
+  const [places, setPlaces] = useState([]);
 
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
@@ -91,8 +93,6 @@ const [data, setData] = useState([])
   return (
     <>
       <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
-      <TicketManagement />
-      {/* <Grid container spacing={3} style={{ width: '100%' }}>
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -117,7 +117,7 @@ const [data, setData] = useState([])
             setIsLoading={setIsLoading}
           />
         </Grid>
-      </Grid>*/}
+      </Grid>
     </>
   );
 };
