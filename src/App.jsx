@@ -4,7 +4,8 @@ import { Grid, Typography } from '@mui/material';
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
-import NewTicket from './components/NewTicket/NewTicket';
+import TicketStatus from './components/Client/TicketStatus/TicketStatus';
+import TicketManagement from './components/Admin/ContainerManagement';
 
 import containers from './data/kontejner.json'
 
@@ -61,6 +62,8 @@ const App = () => {
   return (
     <>
       <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
+      <TicketManagement />
+      {/* <Grid container spacing={3} style={{ width: '100%' }}>
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
