@@ -11,16 +11,20 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@fontsource/poppins": "^4.5.8",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
+    "@ramonak/react-progress-bar": "^5.0.1",
     "@react-google-maps/api": "^2.12.1",
     "axios": "^0.27.2",
     "google-map-react": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
     "supercluster": "^7.1.5",
-    "use-supercluster": "^0.4.0"
+    "use-supercluster": "^0.4.0",
+    "react-drag-drop-files": "^2.3.7",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
