@@ -299,7 +299,7 @@ const App = (props) => {
             <ContainerManagement />
           ) : (
             <>
-              <Grid container spacing={3} sx={{ width: "100%", display: { sm: 'flex' }, flexDirection: {sm: 'column-reverse', xs: 'column-reverse'} }}>
+              <Grid container spacing={3} sx={{ width: "100%", display: { sm: 'flex', md: 'block' }, flexDirection: {sm: 'column-reverse', xs: 'column-reverse', md: 'none'} }}>
                 <Grid item xs={12} md={4}>
                   <ListComp
                     childClicked={childClicked}
