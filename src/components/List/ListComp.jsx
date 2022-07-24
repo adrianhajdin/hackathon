@@ -3,7 +3,7 @@ import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, 
 
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
-const List = ({ places, type, setType, rating, setRating, childClicked, isLoading }) => {
+const List = ({ places, type, setType, rating, setRating, childClicked, isLoading, tickets }) => {
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,14 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
           </Select>
         </FormControl>
           <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto'}}>
-            {places?.map((place, i) => (
+          {type === 'tickets' ?
+            tickets.map((ticket, i) => (
+              <Grid ref={elRefs[i]} key={i} item xs={12}>
+                <PlaceDetails selected={Number(childClicked) === i} refProp={elRefs[i]} place={ticket} />
+              </Grid>
+            ))
+          :
+            places?.map((place, i) => (
               <Grid ref={elRefs[i]} key={i} item xs={12}>
                 <PlaceDetails selected={Number(childClicked) === i} refProp={elRefs[i]} place={place} />
               </Grid>

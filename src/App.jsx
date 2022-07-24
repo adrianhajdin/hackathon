@@ -295,6 +295,7 @@ const App = (props) => {
                     childClicked={childClicked}
                     places={data}
                     type={type}
+                    tickets={tickets}
                     setType={setType}
                   />
                 </Grid>
