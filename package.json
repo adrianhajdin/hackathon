@@ -21,6 +21,8 @@
     "material-ui-search-bar": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "supercluster": "^7.1.5",
+    "use-supercluster": "^0.4.0",
     "react-drag-drop-files": "^2.3.7",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0"

@@ -6,6 +6,11 @@ import { CssBaseline } from '@mui/material';
 
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import NewTicket from "./components/Client/NewTicket/NewTicket";
+import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
+import Alerts from "./components/Admin/Alerts";
+import ContainerManagement from "./components/Admin/ContainerManagement"
+import SendEmail from "./components/Admin/SendEmail";
 import App from './App'
 import './index.css'
 
@@ -41,6 +46,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/new-ticket" element={<NewTicket />} />
+        <Route path="/ticket-status" element={<TicketStatus />} />
+        <Route path="/alerts" element={<Alerts />} />
+        <Route path="/container-management" element={<ContainerManagement />} />
+        <Route path="/send-email" element={<SendEmail />} />
       </Routes>
     </BrowserRouter>
   </ThemeProvider>

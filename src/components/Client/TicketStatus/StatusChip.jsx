@@ -9,20 +9,20 @@ const StatusChip = ({ status }) => {
       case 0:
         return "warning";
       case 1:
-        return "success";
-      case 2:
         return "error";
+      case 2:
+        return "success";
     }
   };
 
   const convertNumberToLabel = () => {
     switch (status) {
       case 0:
-        return "U tijeku";
+        return "Pending";
       case 1:
-        return "Validirano";
+        return "Denied";
       case 2:
-        return "Odbijeno";
+        return "Validated";
     }
   };
 
@@ -32,9 +32,9 @@ const StatusChip = ({ status }) => {
         status === 0 ? (
           <MdAccessTime />
         ) : status === 1 ? (
-          <MdCheckCircleOutline />
-        ) : (
           <MdBlock />
+        ) : (
+          <MdCheckCircleOutline />
         )
       }
       label={convertNumberToLabel()}

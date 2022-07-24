@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, Typography, TextField, Button } from "@mui/material";
+import { Paper, Typography, TextField, Button, Container } from "@mui/material";
 import ImageUploader from "./ImageUploader";
 
 const NewTicket = () => {
@@ -24,7 +24,7 @@ const NewTicket = () => {
   };
 
   return (
-    <div>
+    <Container maxWidth='md' sx={{marginTop: 15 }}>
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Create a ticket
@@ -62,7 +62,7 @@ const NewTicket = () => {
           Send
         </Button>
       </Paper>
-    </div>
+    </Container>
   );
 };
 

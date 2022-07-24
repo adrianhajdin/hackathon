@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, TextField, Button } from "@mui/material";
+import { Paper, Typography, TextField, Button, Container } from "@mui/material";
 import ImageUploader from "../Client/NewTicket/ImageUploader";
 
 const Alerts = () => {
@@ -23,7 +23,7 @@ const Alerts = () => {
   };
 
   return (
-    <div>
+    <Container maxWidth='md' sx={{marginTop: 15 }}>
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Publish a notification
@@ -62,7 +62,7 @@ const Alerts = () => {
           Publish
         </Button>
       </Paper>
-    </div>
+    </Container>
   );
 };
 
