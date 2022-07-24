@@ -22,6 +22,7 @@ import Header from "./components/Header/Header";
 import ListComp from "./components/List/ListComp";
 import Map from "./components/Map/Map";
 import Alerts from "./components/Admin/Alerts";
+import Driver from "./pages/Driver/Driver";
 
 import containers from "./data/kontejner.json";
 import useSupercluster from "use-supercluster";
@@ -230,6 +231,8 @@ const App = (props) => {
             <TicketStatus />
           ) : props.window === "alerts" ? (
             <Alerts />
+          ) : props.window === "driver" ? (
+            <Driver />
           ) : props.window === "container" ? (
             <ContainerManagement />
           ) : (

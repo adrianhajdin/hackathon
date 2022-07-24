@@ -34,11 +34,11 @@ export const mainListItems = (
         <ListItemText primary="Alert System" />
       </ListItemButton>
     </Link>
-    <ListItemButton>
+    <ListItemButton  to="/driver">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customer Service" />
+      <ListItemText primary="Drivers" />
     </ListItemButton>
   </>
 );
