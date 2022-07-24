@@ -1,32 +1,24 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Grid } from '@mui/material';
 
 import Header from "./components/Header/Header";
 import List from "./components/List/List";
 import Map from "./components/Map/Map";
-import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
-import TicketManagement from "./components/Admin/ContainerManagement";
-import Alerts from "./components/Admin/Alerts";
 
 import containers from './data/kontejner.json'
 import useSupercluster from 'use-supercluster'
 
 const App = () => {
-  const [type, setType] = useState('restaurants');
+  const [data, setData] = useState([]);
   const [zoom, setZoom] = useState(17)
-  const [data, setData] = useState([])
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
   const [newBounds, setNewBounds] = useState(null);
-
-  const [placesWithinBounds, setPlacesWithinBounds] = useState([]);
-  const [places, setPlaces] = useState([]);
 
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  
   useEffect(() => {  
    setIsLoading(true)
     const filteredData =  containers.result.records
@@ -58,13 +50,7 @@ const App = () => {
     );
  
     setData(filteredData)
-
     setIsLoading(false);
-      // setTimeout(() => {
-        
-      //   setIsLoading(false)
-      // }, 2000);
-
   }, [newBounds]);
 
   
@@ -75,12 +61,6 @@ const App = () => {
     options: { radius: 75, maxZoom: 20 }
   });
 
-  
-  // useEffect(() => {
-  //   console.log(clusters);
-  //   console.log(supercluster);
-  // }, [clusters, supercluster]);
-  
   const onLoad = (autoC) => setAutocomplete(autoC);
 
   const onPlaceChanged = () => {
@@ -97,9 +77,7 @@ const App = () => {
         <Grid item xs={12} md={4}>
           <List
             childClicked={childClicked}
-            places={clusters}
-            type={type}
-            setType={setType}
+            places={data}
           />
         </Grid>
         <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
