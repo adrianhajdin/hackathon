@@ -41,17 +41,10 @@ const TicketManagement = () => {
   return (
     <div>
       {data && 
-      <Paper elevation={5} sx={{ padding: 5 }}>
+      <Paper elevation={5} sx={{ padding: 5, margin: 3 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Container status
         </Typography>
-
-    {/*     <SearchBar
-          value={searched}
-          onChange={(searchVal) => requestSearch(searchVal)}
-          onCancelSearch={() => cancelSearch()}
-        />
- */}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>

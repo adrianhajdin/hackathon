@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Paper, Typography, TextField, Button, Container } from "@mui/material";
 import ImageUploader from "../Client/NewTicket/ImageUploader";
+import axios from 'axios';
 
 const Alerts = () => {
   const [file, setFile] = useState(null);
   const [coords, setCoords] = useState({});
   const [inputValues, setInputValues] = useState({
     title: "",
-    description: "",
-    file: "",
+    description: ""
   });
 
-  const handleSubmit = () => {};
-
-  const fetchCoords = () => {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => {
-        setCoords({ lat: latitude, lng: longitude });
-      }
-    );
-    console.log(coords);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { status } = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/send-email`, inputValues )
   };
 
+
   return (
-    <Container maxWidth='md' sx={{marginTop: 3, marginBottom: 3 }}>
+    <Container maxWidth='md' sx={{marginTop: 3, marginBottom: 3, minWidth: "100%" }}>
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Publish a notification
@@ -41,19 +36,7 @@ const Alerts = () => {
           multiline
           rows={4}
           sx={{ marginBottom: 3, borderRadius: 15 }}
-        />
-        <Typography variant="h6" sx={{ marginBottom: 3 }}>
-          Location
-        </Typography>
-        <Button
-          onClick={fetchCoords}
-          variant="outlined"
-          sx={{ marginBottom: 3 }}
-        >
-          Use my location
-        </Button>
-
-        <ImageUploader file={file} setFile={setFile} />
+        />   
         <Button
           variant="contained"
           onClick={handleSubmit}
