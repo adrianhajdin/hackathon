@@ -37,7 +37,7 @@ export default function SignInSide() {
     setEmail(data.get('email'));
     setPassword(data.get('password'));
     console.log(email, password);
-    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/login`, { email, password })
+    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/admin/login`, { email, password })
     console.log(response)
   };
 

@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -23,7 +24,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
 
 export default function SignUp() {
   const [firstName, setFirstName] = React.useState('');
@@ -39,7 +39,7 @@ export default function SignUp() {
     setEmail(data.get('email'));
     setPassword(data.get('password'));
     console.log(email, password);
-    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/register`, 
+    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/admin/register`, 
     { firstName, lastName,email, password })
     console.log(response)
   };

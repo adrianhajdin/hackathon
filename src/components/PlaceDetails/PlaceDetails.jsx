@@ -9,15 +9,15 @@ const PlaceDetails = ({ place, selected, refProp }) => {
       <CardContent>
         <Typography gutterBottom variant="h5">{place.name}</Typography>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">Lokacija</Typography>
+          <Typography component="legend">Location</Typography>
           <Typography gutterBottom variant="subtitle1">{place.lokacija}</Typography>
         </Box>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">Vrsta</Typography>
+          <Typography component="legend">Type</Typography>
           <Typography gutterBottom variant="subtitle1">{place.vrstaPosude === 'MIJEANI KOMUNALNI OTPAD' ? 'MIJESANI OTPAD' : place.vrstaPosude}</Typography>
         </Box>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>
-          <Typography component="legend">Volumen</Typography>
+          <Typography component="legend">Volume</Typography>
           <Typography gutterBottom variant="subtitle1">
             {place.volumen}
           </Typography>

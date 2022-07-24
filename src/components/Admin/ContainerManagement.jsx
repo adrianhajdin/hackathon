@@ -14,7 +14,7 @@ import {
 import ProgressBar from "@ramonak/react-progress-bar";
 
 
-const TicketManagement = () => {
+const ContainerManagement = () => {
   /*   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -53,21 +53,6 @@ const TicketManagement = () => {
     ],
   };
 
- /*  const [rows, setRows] = useState(data.containers);
-  const [searched, setSearched] = useState("");
-
-  const requestSearch = (searchedVal) => {
-    const filteredRows = data.containers.filter((row) => {
-      return row.name.toLowerCase().includes(searchedVal.toLowerCase());
-    });
-    setRows(filteredRows);
-  };
-
-  const cancelSearch = () => {
-    setSearched("");
-    requestSearch(searched);
-  };
- */
 
   const progressColor = (percentage) => {
     let hex = "";
@@ -78,19 +63,13 @@ const TicketManagement = () => {
   console.log(data);
 
   return (
-    <Container maxWidth='md' sx={{marginTop: 15 }}>
+    <Container maxWidth='md' sx={{marginTop: 3, marginBottom: 3 }}>
 
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Container status
         </Typography>
 
-    {/*     <SearchBar
-          value={searched}
-          onChange={(searchVal) => requestSearch(searchVal)}
-          onCancelSearch={() => cancelSearch()}
-        />
- */}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -121,4 +100,4 @@ const TicketManagement = () => {
   );
 };
 
-export default TicketManagement;
+export default ContainerManagement;
