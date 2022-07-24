@@ -1,17 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@mui/material';
 
-const PlaceDetails = ({ place, selected, refProp }) => {
-  if (selected && window.innerWidth > 500) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  console.log(place);
-  creationDateAndTime: "2022-07-23 18:53:16.661004"
-  description: "Lorem Ipsum"
-  id: "e815ec247f6440e4a909f9d3b0ecdcaf"
-  status: 0
-  title: "Test"
-
-  
+const PlaceDetails = ({ place, selected, refProp }) => {  
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" }
   return new Date(dateString).toLocaleDateString(undefined, options)
