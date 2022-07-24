@@ -15,71 +15,27 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 
 const TicketManagement = () => {
-  /*   const [data, setData] = useState([]);
-
-  const getData = async () => {
-    const data = await axios.get(
-      `https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/containers/get-all-containers`
-    );
-    setData(data);
-  };
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/containers/get-all-containers` );
+      
+      setData(data);
+      setIsLoading(false);
+    };
+
     getData();
-    console.log(data);
-  }, []); */
+  }, []);
 
-  const data = {
-    statusCode: 200,
-    containers: [
-      {
-        x: "45.3271",
-        y: "14.4422",
-        volume: "1000",
-        typeOfContainer: "metal",
-        fillPercentage: "60",
-        address: "Mladenici 69",
-        id: "5a7e3cc4b51941b1a325213c30fdb4c5",
-      },
-      {
-        x: "45.3271",
-        y: "14.4422",
-        volume: "1000",
-        typeOfContainer: "metal",
-        fillPercentage: "95",
-        address: "Avelina Turka 2a",
-        id: "d4362cf1edb745ad81ec8b5cfca52205",
-      },
-    ],
-  };
-
- /*  const [rows, setRows] = useState(data.containers);
-  const [searched, setSearched] = useState("");
-
-  const requestSearch = (searchedVal) => {
-    const filteredRows = data.containers.filter((row) => {
-      return row.name.toLowerCase().includes(searchedVal.toLowerCase());
-    });
-    setRows(filteredRows);
-  };
-
-  const cancelSearch = () => {
-    setSearched("");
-    requestSearch(searched);
-  };
- */
-
-  const progressColor = (percentage) => {
-    let hex = "";
-    percentage < 90 ? hex = "#2BAF66" : hex = "#FB4F52";
-    return hex;
+  if (isLoading) {
+    return 'Loading...';
   }
 
-  console.log(data);
-
   return (
-    <Container maxWidth='md' sx={{marginTop: 15 }}>
-
+    <div>
+      {data && 
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Container status
@@ -102,13 +58,18 @@ const TicketManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.containers.map((container) => (
+              {console.log(data)}
+              {data?.containers?.map((container) => (
                 <TableRow
                 key={container.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">{container.address}</TableCell>
+<<<<<<< HEAD
+                  <TableCell align="left"><ProgressBar bgColor="#2BAF66" completed={container.fillPercentage} /></TableCell>
+=======
                   <TableCell align="left"><ProgressBar bgColor={progressColor(container.fillPercentage)} completed={container.fillPercentage} /></TableCell>
+>>>>>>> 8627ae89c99a0fa9fbf7a35c33d1525df6faf60e
                   <TableCell align="left">{container.typeOfContainer}</TableCell>
                   <TableCell align="right">{container.volume}</TableCell>
                 </TableRow>
@@ -116,8 +77,13 @@ const TicketManagement = () => {
             </TableBody>
           </Table>
         </TableContainer>
+<<<<<<< HEAD
+      </Paper>}
+    </div>
+=======
       </Paper>
     </Container>
+>>>>>>> 8627ae89c99a0fa9fbf7a35c33d1525df6faf60e
   );
 };
 
