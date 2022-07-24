@@ -5,7 +5,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   return (
-    <Card elevation={6}>
+    <Card elevation={6} sx={{marginRight: 5}}>
       <CardContent>
         <Typography gutterBottom variant="h5">{place.name}</Typography>
         <Box sx={{display:"flex", justifyContent:"space-between", marginTop:2, marginBottom: 2}}>

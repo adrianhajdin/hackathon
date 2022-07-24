@@ -60,7 +60,8 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked, isLoading,
     <div style={{ height: '85vh', width: '100%', marginTop: 30 }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyCjx0VcQOSzfyAtO--jUTcRIHtwnjT76fQ' }}
-        center={{ lat: 45.3271, lng: 14.4422}}
+        center={coords.lat ? coords : { lat: 45.3271, lng: 14.4422}}
+        defaultCenter={{ lat: 45.3271, lng: 14.4422}}
         defaultZoom={17}
         yesIWantToUseGoogleMapApiInternals
         margin={[50, 50, 50, 50]}
@@ -98,7 +99,7 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked, isLoading,
                     style={clusterMarker}
                   >
                     <div
-                      style={{...clusterMarker, width: size * 20 + "px", height: size * 20 + "px"}}
+                      style={{...clusterMarker, width: size * 10 + "px", height: size * 10 + "px"}}
                       onClick={() => {
                         const expansionZoom = Math.min(
                           supercluster.getClusterExpansionZoom(cluster.id),

@@ -48,6 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/new-ticket" element={<App window="new-ticket" />} />
         <Route path="/ticket-status" element={<App window="ticket-status" />} />
         <Route path="/alerts" element={<App window="alerts" />} />
+        <Route path="/driver" element={<App window="driver" />} />
         <Route
           path="/container-management"
           element={<App window="container" />}

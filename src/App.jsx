@@ -3,6 +3,7 @@ import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
+import InputBase from "@mui/material/InputBase";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -22,14 +23,18 @@ import Header from "./components/Header/Header";
 import ListComp from "./components/List/ListComp";
 import Map from "./components/Map/Map";
 import Alerts from "./components/Admin/Alerts";
+import Driver from "./pages/Driver/Driver";
 
-import containers from "./data/kontejner.json";
+import { Autocomplete } from "@react-google-maps/api";
+
+import SearchIcon from "@mui/icons-material/Search";
+
 import useSupercluster from "use-supercluster";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import containers from "./data/kontejner.json";
 import NewTicket from "./components/Client/NewTicket/NewTicket";
 import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
 import ContainerManagement from "./components/Admin/ContainerManagement";
-import { useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -189,6 +194,39 @@ const App = (props) => {
             >
               Eco Rijeka
             </Typography>
+            <Box display="flex">
+          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+            <div
+              style={{
+                position: "relative",
+                marginRight: 2,
+                marginLeft: 0,
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  padding: 2,
+                  height: "100%",
+                  position: "absolute",
+                  pointerEvents: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                sx={{
+                  color: "white",
+                  input: { padding: 2, paddingLeft: 4, width: "100%" },
+                }}
+              />
+            </div>
+          </Autocomplete>
+        </Box>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -230,6 +268,8 @@ const App = (props) => {
             <TicketStatus />
           ) : props.window === "alerts" ? (
             <Alerts />
+          ) : props.window === "driver" ? (
+            <Driver />
           ) : props.window === "container" ? (
             <ContainerManagement />
           ) : (
@@ -238,7 +278,7 @@ const App = (props) => {
                 <Grid item xs={12} md={4}>
                   <ListComp
                     childClicked={childClicked}
-                    places={clusters}
+                    places={data}
                     type={type}
                     setType={setType}
                   />
