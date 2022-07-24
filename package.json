@@ -21,11 +21,13 @@
     "material-ui-search-bar": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "supercluster": "^7.1.5",
-    "use-supercluster": "^0.4.0",
     "react-drag-drop-files": "^2.3.7",
+    "react-google-maps": "^9.4.5",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-speech-kit": "^3.0.1",
+    "supercluster": "^7.1.5",
+    "use-supercluster": "^0.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

@@ -8,19 +8,22 @@ const NewTicket = () => {
   const [inputValues, setInputValues] = useState({
     title: "",
     description: "",
-    file: "",
+    x: "",
+    y: ""
   });
 
-
-  const handleSubmit = () => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { status } = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/tickets/add-ticket`, inputValues )
+  };
 
   const fetchCoords = () => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         setCoords({ lat: latitude, lng: longitude });
+        setInputValues({...inputValues, x:latitude, y:longitude});
       }
     );
-    console.log(coords);
   };
 
   return (
@@ -43,16 +46,17 @@ const NewTicket = () => {
           rows={4}
           sx={{ marginBottom: 3, borderRadius: 15 }}
         />
-        <Typography variant="h6" sx={{ marginBottom: 3 }}>
+           <Typography variant="h6" sx={{ marginBottom: 3 }}>
           Location
         </Typography>
         <Button
           onClick={fetchCoords}
           variant="outlined"
-          sx={{ marginBottom: 3 }}
+          sx={{ marginBottom: 0 }}
         >
           Use my location
         </Button>
+          {coords ? `(${coords.lat} ${coords.lng})` : ""}
         <ImageUploader file={file} setFile={setFile} />
         <Button
           variant="contained"
