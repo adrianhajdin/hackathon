@@ -13,6 +13,11 @@ import {
 } from "@mui/material";
 import ProgressBar from "@ramonak/react-progress-bar";
 
+const progressColor = (percentage) => {
+  let hex = "";
+  percentage < 90 ? hex = "#2BAF66" : hex = "#FB4F52";
+  return hex;
+}
 
 const TicketManagement = () => {
   const [data, setData] = useState(null);

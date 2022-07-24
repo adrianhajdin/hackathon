@@ -18,7 +18,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
 
   return (
     <div style={{ padding: 25 }}>
-      <Typography variant="h4" sx={{mb: 2}}>Kontejneri</Typography>
+      <Typography variant="h4" sx={{mb: 2}}>Live Map</Typography>
       {false ? (
         <div sx={{ height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
           <CircularProgress size="5rem" />
@@ -34,10 +34,10 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
             label="Containers"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Staklo</MenuItem>
-            <MenuItem value={20}>Papir</MenuItem>
-            <MenuItem value={30}>Plastika-Tetra-Metal</MenuItem>
-            <MenuItem value={30}>Mijesani komunalni otpad</MenuItem>
+            <MenuItem value={10}>Glass</MenuItem>
+            <MenuItem value={20}>Paper</MenuItem>
+            <MenuItem value={30}>Plastic-Tetra-Metal</MenuItem>
+            <MenuItem value={30}>Mixed communal waste</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth>
@@ -54,7 +54,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
             <MenuItem value={30}>Problems</MenuItem>
           </Select>
         </FormControl>
-          <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto', marginTop: '10px'}}>
+          <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto'}}>
             {places?.map((place, i) => (
               <Grid ref={elRefs[i]} key={i} item xs={12}>
                 <PlaceDetails selected={Number(childClicked) === i} refProp={elRefs[i]} place={place} />

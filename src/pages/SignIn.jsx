@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -30,6 +30,8 @@ function Copyright(props) {
 export default function SignInSide() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const navigator = useNavigate();
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,8 +39,11 @@ export default function SignInSide() {
     setEmail(data.get('email'));
     setPassword(data.get('password'));
     console.log(email, password);
-    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/login`, { email, password })
-    console.log(response)
+    const { status } = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/admin/login`, { email, password })
+    console.log(status === 200)
+    if (status === 200){
+      navigator('/');
+    }
   };
 
   return (

@@ -23,7 +23,7 @@ const Alerts = () => {
   };
 
   return (
-    <Container maxWidth='md' sx={{marginTop: 15 }}>
+    <Container maxWidth='md' sx={{marginTop: 3, marginBottom: 3 }}>
       <Paper elevation={5} sx={{ padding: 5 }}>
         <Typography variant="h5" sx={{ marginBottom: 4 }}>
           Publish a notification
