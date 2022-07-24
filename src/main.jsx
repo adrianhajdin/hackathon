@@ -10,6 +10,7 @@ import NewTicket from "./components/Client/NewTicket/NewTicket";
 import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
 import Alerts from "./components/Admin/Alerts";
 import ContainerManagement from "./components/Admin/ContainerManagement"
+import SendEmail from "./components/Admin/SendEmail";
 import App from './App'
 import './index.css'
 
@@ -49,6 +50,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/ticket-status" element={<TicketStatus />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/container-management" element={<ContainerManagement />} />
+        <Route path="/send-email" element={<SendEmail />} />
       </Routes>
     </BrowserRouter>
   </ThemeProvider>
