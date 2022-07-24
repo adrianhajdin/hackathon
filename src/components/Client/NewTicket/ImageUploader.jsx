@@ -8,7 +8,7 @@ const ImageUploader = ({file, setFile}) => {
 
   return (
     <div>
-      <Typography variant="h6" sx={{ marginBottom: 3 }}>
+      <Typography variant="h6" sx={{ marginBottom: 3, marginTop: 3 }}>
         Upload photo
       </Typography>
 

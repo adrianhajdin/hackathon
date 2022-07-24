@@ -30,12 +30,13 @@ import { Autocomplete } from "@react-google-maps/api";
 import SearchIcon from "@mui/icons-material/Search";
 
 import useSupercluster from "use-supercluster";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import containers from "./data/kontejner.json";
 import NewTicket from "./components/Client/NewTicket/NewTicket";
 import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
 import ContainerManagement from "./components/Admin/ContainerManagement";
 import axios from "axios";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -178,6 +179,13 @@ const App = (props) => {
     setCoords({ lat, lng });
   };
 
+  const navigator = useNavigate();
+
+  const logout = () => {
+    window.localStorage.removeItem('profile');
+    navigator('/admin/sign-in');
+  }
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -209,6 +217,7 @@ const App = (props) => {
             >
               Eco Rijeka
             </Typography>
+            
             <Box display="flex">
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <div
@@ -242,6 +251,7 @@ const App = (props) => {
             </div>
           </Autocomplete>
         </Box>
+            <LogoutIcon onClick={logout}/>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

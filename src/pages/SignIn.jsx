@@ -35,13 +35,12 @@ export default function SignInSide() {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setEmail(data.get('email'));
-    setPassword(data.get('password'));
     console.log(email, password);
-    const { status } = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/admin/login`, { email, password })
-    console.log(status === 200)
-    if (status === 200){
+    const response = await axios.post(`https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/user/admin/login`, { email, password })
+    console.log(status === 200);
+    console.log(response.data);
+    if (response.status === 200){
+      localStorage.setItem('profile', JSON.stringify(response.data));
       navigator('/');
     }
   };
@@ -90,6 +89,7 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -100,6 +100,7 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

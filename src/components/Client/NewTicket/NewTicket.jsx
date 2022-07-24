@@ -56,12 +56,12 @@ const NewTicket = () => {
         >
           Use my location
         </Button>
-          {coords ? `(${coords.lat} ${coords.lng})` : ""}
+          {typeof(coords.lat) !== 'undefined' ? `(${coords.lat} ${coords.lng})` : ""}
         <ImageUploader file={file} setFile={setFile} />
         <Button
           variant="contained"
           onClick={handleSubmit}
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", marginTop: 3 }}
         >
           Send
         </Button>

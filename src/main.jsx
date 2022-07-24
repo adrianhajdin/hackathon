@@ -43,8 +43,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/admin/sign-in" element={<SignIn />} />
+        <Route path="/admin/sign-up" element={<SignUp />} />
+        <Route path="/user/sign-in" element={<SignIn />} />
+        <Route path="/user/sign-up" element={<SignUp />} />
         <Route path="/new-ticket" element={<App window="new-ticket" />} />
         <Route path="/ticket-status" element={<App window="ticket-status" />} />
         <Route path="/alerts" element={<App window="alerts" />} />
