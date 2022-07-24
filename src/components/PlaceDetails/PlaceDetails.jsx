@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@mui/material';
 
 const PlaceDetails = ({ place, selected, refProp }) => {
-  if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (selected && window.innerWidth > 500) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   console.log(place);
   creationDateAndTime: "2022-07-23 18:53:16.661004"

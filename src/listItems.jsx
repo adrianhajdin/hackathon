@@ -26,7 +26,7 @@ export const mainListItems = (
         <ListItemText primary="Live Map" />
       </ListItemButton>
     </Link>
-    {flag && flag === "admin" && (
+    { (
       <Link to="/container-management">
         <ListItemButton>
           <ListItemIcon>
@@ -36,7 +36,7 @@ export const mainListItems = (
         </ListItemButton>
       </Link>
     )}
-    {flag && flag === "admin" && (
+    { (
       <Link to="/alerts">
         <ListItemButton>
           <ListItemIcon>
@@ -46,7 +46,7 @@ export const mainListItems = (
         </ListItemButton>
       </Link>
     )}
-    {flag && flag === "admin" && (
+    { (
       <ListItemButton to="/driver">
         <ListItemIcon>
           <DriveEtaIcon />
@@ -54,7 +54,7 @@ export const mainListItems = (
         <ListItemText primary="Drivers" />
       </ListItemButton>
     )}
-    {flag && flag === "user" && (
+    { (
       <ListItemButton to="/new-ticket">
         <ListItemIcon>
           <FeedbackIcon />
@@ -62,7 +62,7 @@ export const mainListItems = (
         <ListItemText primary="New ticket" />
       </ListItemButton>
     )}
-    {flag && flag === "user" && (
+    { (
       <ListItemButton to="/ticket-status">
         <ListItemIcon>
           <BackupTableIcon />

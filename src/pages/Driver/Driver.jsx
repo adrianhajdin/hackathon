@@ -80,11 +80,11 @@ const Map = () => {
 
 return (
     <div>
+        <button onClick={() => setTest(true)}>Speak</button>
         <GoogleMapExample
           containerElement={<div style={{ height: `100vh`, width: "100vw" }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />
-      <button onClick={() => setTest(true)}>Speak</button>
     </div>
   );
 }

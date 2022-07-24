@@ -128,7 +128,7 @@ const App = (props) => {
           Number(c.Y.replace(",", ".")) > newBounds?.sw?.lat &&
           Number(c.X.replace(",", ".")) > newBounds?.sw?.lng
       )
-      .slice(0, 7000)
+      .slice(0, 3000)
       .map((place) => ({
         id: place._id,
         vrstaPosude: place["VRSTA OTPADA"],
@@ -299,7 +299,7 @@ const App = (props) => {
             <ContainerManagement />
           ) : (
             <>
-              <Grid container spacing={3} style={{ width: "100%" }}>
+              <Grid container spacing={3} sx={{ width: "100%", display: { sm: 'flex' }, flexDirection: {sm: 'column-reverse', xs: 'column-reverse'} }}>
                 <Grid item xs={12} md={4}>
                   <ListComp
                     childClicked={childClicked}
