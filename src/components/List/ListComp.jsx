@@ -17,7 +17,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
   }, [places]);
 
   return (
-    <div style={{ padding: 25 }}>
+    <div style={{ padding: 25}}>
       <Typography variant="h4" sx={{mb: 2}}>Live Map</Typography>
       {false ? (
         <div sx={{ height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
@@ -25,7 +25,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
         </div>
       ) : (
         <>
-        <FormControl fullWidth sx={{ mb: 2 }}>
+        {/* <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel id="containers">Containers</InputLabel>
           <Select
             labelId="containers"
@@ -53,7 +53,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
             <MenuItem value={20}>Activities</MenuItem>
             <MenuItem value={30}>Problems</MenuItem>
           </Select>
-        </FormControl>
+        </FormControl> */}
           <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto'}}>
             {places?.map((place, i) => (
               <Grid ref={elRefs[i]} key={i} item xs={12}>
