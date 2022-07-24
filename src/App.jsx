@@ -93,9 +93,6 @@ const App = (props) => {
   const [bounds, setBounds] = useState(null);
   const [newBounds, setNewBounds] = useState(null);
 
-  const [placesWithinBounds, setPlacesWithinBounds] = useState([]);
-  const [places, setPlaces] = useState([]);
-
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
