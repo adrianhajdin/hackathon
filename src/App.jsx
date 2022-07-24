@@ -35,6 +35,7 @@ import containers from "./data/kontejner.json";
 import NewTicket from "./components/Client/NewTicket/NewTicket";
 import TicketStatus from "./components/Client/TicketStatus/TicketStatus";
 import ContainerManagement from "./components/Admin/ContainerManagement";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -91,7 +92,21 @@ const App = (props) => {
     setOpen(!open);
   };
 
-  const [type, setType] = useState("restaurants");
+  const [tickets, setTickets] = useState([]);
+
+  const getTickets = async () => {
+    const data = await axios.get(
+      `https://bfid62yvk7.execute-api.us-east-1.amazonaws.com/auth/tickets/get-all-tickets`
+    );
+    setTickets(data.data.tickets);
+  };
+
+  useEffect(() => {
+    getTickets();
+    console.log(data);
+  }, []);
+
+  const [type, setType] = useState("trash");
   const [zoom, setZoom] = useState(17);
   const [data, setData] = useState([]);
   const [coords, setCoords] = useState({});
@@ -305,6 +320,8 @@ const App = (props) => {
                     setNewBounds={setNewBounds}
                     setZoom={setZoom}
                     setIsLoading={setIsLoading}
+                    type={type}
+                    tickets={tickets}
                   />
                 </Grid>
               </Grid>

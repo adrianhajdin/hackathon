@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
   Container,
+  CircularProgress,
 } from "@mui/material";
 import ProgressBar from "@ramonak/react-progress-bar";
 
@@ -35,7 +36,7 @@ const TicketManagement = () => {
   }, []);
 
   if (isLoading) {
-    return 'Loading...';
+    return null
   }
 
   return (

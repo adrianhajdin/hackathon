@@ -8,6 +8,7 @@ import paper from '../../assets/paper.svg';
 import recycle from '../../assets/recycle.svg';
 import trash from '../../assets/trash-bin.png';
 import mapStyles from './mapStyles';
+import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 
 const clusterMarker = {
   color: 'rgb(255, 255, 255)',
@@ -53,7 +54,8 @@ const GenerateIcon = (type) =>{
 
 const Marker = ({ children }) => children;
 
-const Map = ({ coords, places, setCoords, setBounds, setChildClicked, isLoading, clusters, setNewBounds, supercluster, setZoom, setIsLoading }) => {
+const Map = ({ coords, places, setCoords, setBounds, setChildClicked, isLoading, clusters, setNewBounds, supercluster, setZoom, setIsLoading, type, tickets }) => {
+  console.log(tickets)
   const mapRef = useRef();
 
   return (
@@ -83,7 +85,8 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked, isLoading,
         }}
         onChildClick={(child) => setChildClicked(child)}
       >
-         {clusters &&
+      
+         {type === 'trash' && clusters &&
             !isLoading && clusters.map((cluster) => {
               const [longitude, latitude] = cluster.geometry.coordinates;
               const { cluster: isCluster, point_count: pointCount } = cluster.properties;
@@ -128,6 +131,12 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked, isLoading,
                 );
               }
             })}
+            {console.log(tickets)}
+            {type === 'tickets' && tickets?.map((ticket) => (
+              <div lat={ticket.x} lng={ticket.y}>
+                <GppMaybeIcon size="large" />
+              </div>
+            ))}
       </GoogleMapReact>
     </div>
   );
